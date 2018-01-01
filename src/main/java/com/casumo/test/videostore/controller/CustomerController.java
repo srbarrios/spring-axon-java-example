@@ -7,7 +7,6 @@ import com.casumo.test.videostore.coreapi.RemoveCustomerCommand;
 import com.casumo.test.videostore.entity.Customer;
 import com.casumo.test.videostore.repository.CustomerRepository;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,11 @@ import java.util.stream.Collectors;
 public class CustomerController {
 
     private final CustomerRepository repository;
+    private final CommandGateway commandGateway;
 
-    @Autowired
-    private CommandGateway commandGateway;
-
-    public CustomerController(CustomerRepository repository) {
+    public CustomerController(final CustomerRepository repository, final CommandGateway commandGateway) {
         this.repository = repository;
+        this.commandGateway = commandGateway;
     }
 
     @GetMapping("/customers")

@@ -2,6 +2,7 @@ package com.casumo.test.videostore.controller.dto;
 
 import com.casumo.test.videostore.constants.FilmFormat;
 import com.casumo.test.videostore.constants.FilmType;
+import lombok.Data;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.MappedSuperclass;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @MappedSuperclass
+@Data
 public class FilmDto {
 
     protected String title;
@@ -29,69 +31,6 @@ public class FilmDto {
 
     protected String description;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public FilmType getType() {
-        return type;
-    }
-
-    public void setType(FilmType type) {
-        this.type = type;
-    }
-
-    public FilmFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(FilmFormat format) {
-        this.format = format;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public List<String> getLanguages() {
-        return languages;
-    }
-
-    public void setLanguages(List<String> languages) {
-        this.languages = languages;
-    }
-
-    public Integer getMinimumAge() {
-        return minimumAge;
-    }
-
-    public void setMinimumAge(Integer minimumAge) {
-        this.minimumAge = minimumAge;
-    }
-
-    public Date getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(Date releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public FilmDto() {
     }

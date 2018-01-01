@@ -1,7 +1,10 @@
 package com.casumo.test.videostore.controller.dto;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class ReturnFilmsDto {
 
     private String customerId;
@@ -16,19 +19,4 @@ public class ReturnFilmsDto {
         this.filmsIds = filmsIds;
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public List<String> getFilmsIds() {
-        return filmsIds;
-    }
-
-    public void setFilmsIds(List<String> filmsIds) {
-        this.filmsIds = filmsIds;
-    }
 }

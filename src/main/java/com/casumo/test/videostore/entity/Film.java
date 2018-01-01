@@ -7,6 +7,7 @@ import com.casumo.test.videostore.coreapi.CreateFilmCommand;
 import com.casumo.test.videostore.coreapi.FilmCreatedEvent;
 import com.casumo.test.videostore.coreapi.FilmRemovedEvent;
 import com.casumo.test.videostore.coreapi.RemoveFilmCommand;
+import lombok.Data;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 
@@ -21,6 +22,7 @@ import java.util.Optional;
 import static org.axonframework.commandhandling.model.AggregateLifecycle.apply;
 
 @Entity
+@Data
 public class Film extends FilmDto {
 
     @Id
@@ -46,21 +48,6 @@ public class Film extends FilmDto {
         this.renter = null;
     }
 
-    public String getFilmId() {
-        return filmId;
-    }
-
-    public void setFilmId(String filmId) {
-        this.filmId = filmId;
-    }
-
-    public Optional<Customer> getRenter() {
-        return Optional.ofNullable(renter);
-    }
-
-    public void setRenter(Customer renter) {
-        this.renter = renter;
-    }
 
     @CommandHandler
     public Film(CreateFilmCommand cmd) {
@@ -97,21 +84,4 @@ public class Film extends FilmDto {
         this.releaseDate = event.getReleaseDate();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Film film = (Film) o;
-
-        if (filmId != null ? !filmId.equals(film.filmId) : film.filmId != null) return false;
-        return renter != null ? renter.equals(film.renter) : film.renter == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = filmId != null ? filmId.hashCode() : 0;
-        result = 31 * result + (renter != null ? renter.hashCode() : 0);
-        return result;
-    }
 }

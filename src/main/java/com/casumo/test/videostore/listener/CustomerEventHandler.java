@@ -13,7 +13,6 @@ import com.casumo.test.videostore.repository.RentedFilmRepository;
 import com.casumo.test.videostore.utils.TimeProvider;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.eventhandling.EventHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -30,18 +29,18 @@ public class CustomerEventHandler {
     private final CustomerRepository customerRepository;
     private final RentedFilmRepository rentedFilmRepository;
     private final TimeProvider timeProvider;
-
-    @Autowired
-    private CommandGateway commandGateway;
+    private final CommandGateway commandGateway;
 
     public CustomerEventHandler(final FilmRepository filmRepository,
                                 final CustomerRepository customerRepository,
                                 final RentedFilmRepository rentedFilmRepository,
-                                final TimeProvider timeProvider) {
+                                final TimeProvider timeProvider,
+                                final CommandGateway commandGateway) {
         this.filmRepository = filmRepository;
         this.customerRepository = customerRepository;
         this.rentedFilmRepository = rentedFilmRepository;
         this.timeProvider = timeProvider;
+        this.commandGateway = commandGateway;
     }
 
     @EventHandler

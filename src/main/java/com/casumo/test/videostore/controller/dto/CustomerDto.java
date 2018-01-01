@@ -1,8 +1,11 @@
 package com.casumo.test.videostore.controller.dto;
 
+import lombok.Data;
+
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@Data
 public class CustomerDto {
 
     protected String fullName;
@@ -14,22 +17,6 @@ public class CustomerDto {
 
     public CustomerDto(String fullName, Integer phoneNumber) {
         this.fullName = fullName;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public Integer getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(Integer phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

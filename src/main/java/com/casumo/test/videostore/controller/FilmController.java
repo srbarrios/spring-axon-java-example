@@ -7,7 +7,6 @@ import com.casumo.test.videostore.coreapi.RemoveFilmCommand;
 import com.casumo.test.videostore.entity.Film;
 import com.casumo.test.videostore.repository.FilmRepository;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +18,11 @@ import java.util.UUID;
 public class FilmController {
 
     private final FilmRepository repository;
+    private final CommandGateway commandGateway;
 
-    @Autowired
-    private CommandGateway commandGateway;
-
-    public FilmController(FilmRepository repository) {
+    public FilmController(final FilmRepository repository, final CommandGateway commandGateway) {
         this.repository = repository;
+        this.commandGateway = commandGateway;
     }
 
     @GetMapping("/films")

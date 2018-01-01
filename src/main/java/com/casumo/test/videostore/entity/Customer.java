@@ -1,6 +1,7 @@
 package com.casumo.test.videostore.entity;
 
 import com.casumo.test.videostore.controller.dto.CustomerDto;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Collections;
@@ -11,6 +12,7 @@ import static com.casumo.test.videostore.constants.VideoStoreConstants.EXTRA_BON
 import static com.casumo.test.videostore.constants.VideoStoreConstants.REGULAR_BONUS_POINTS;
 
 @Entity
+@Data
 public class Customer extends CustomerDto {
 
     @Id
@@ -34,30 +36,6 @@ public class Customer extends CustomerDto {
         this.rentedFilmEntities = Collections.emptyList();
     }
 
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public List<RentedFilm> getRentedFilmEntities() {
-        return rentedFilmEntities;
-    }
-
-    public void setRentedFilmEntities(List<RentedFilm> rentedFilmEntities) {
-        this.rentedFilmEntities = rentedFilmEntities;
-    }
-
-    public Integer getBonusPoints() {
-        return bonusPoints;
-    }
-
-    public void setBonusPoints(Integer bonusPoints) {
-        this.bonusPoints = bonusPoints;
-    }
-
     public void addRentedFilm(RentedFilm newRentedFilm) {
         this.rentedFilmEntities.add(newRentedFilm);
         switch (newRentedFilm.getFilm().getType()) {
@@ -79,25 +57,6 @@ public class Customer extends CustomerDto {
                 .stream()
                 .filter(rentedFilm -> rentedFilm.getFilm().equals(film))
                 .findFirst();
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        if (customerId != null ? !customerId.equals(customer.customerId) : customer.customerId != null) return false;
-        return rentedFilmEntities != null ? rentedFilmEntities.equals(customer.rentedFilmEntities) : customer.rentedFilmEntities == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = customerId != null ? customerId.hashCode() : 0;
-        result = 31 * result + (rentedFilmEntities != null ? rentedFilmEntities.hashCode() : 0);
-        return result;
     }
 
 

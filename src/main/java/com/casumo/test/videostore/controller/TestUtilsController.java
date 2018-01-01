@@ -1,7 +1,6 @@
 package com.casumo.test.videostore.controller;
 
 import com.casumo.test.videostore.utils.TimeProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +17,11 @@ import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE;
 @RestController
 public class TestUtilsController {
 
-    @Autowired
     private TimeProvider timeProvider;
+
+    public TestUtilsController(TimeProvider timeProvider) {
+        this.timeProvider = timeProvider;
+    }
 
 
     @PostMapping("/testutils/fixdate/{date}/{securitytoken}")
